@@ -11,11 +11,15 @@ import Light1 from "../assets/Light1.jpg";
 import Light2 from "../assets/Light2.jpg";
 import Light3 from "../assets/Light3.jpg";
 import { clients } from '../utility/clients';
+import FixtureAboveBar from "../assets/FixtureAboveBar.png"
+import Purple from "../assets/Purple.png"
+import Purple2 from "../assets/Purple2.png"
 
 const images = [Light1, Light2, Light3];
 
 const About: React.FC = () => {
     const [index, setIndex] = useState(0);
+    const [hover, setHover] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -42,17 +46,6 @@ const About: React.FC = () => {
                     <Grid container spacing={4} alignItems="center">
                         {/* Left Side - Image Transition */}
                         <Grid item xs={12} md={3} >
-                            {/* <motion.img
-                                key={index}
-                                src={images[index]}
-                                alt="Chandelier"
-                                className="max-w-full"
-                                style={{ width: "100%", maxWidth: "500px", borderRadius: "10px" }}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 1 }}
-                            /> */}
                             <Typography variant='h1'>Our Story</Typography>
                         </Grid>
 
@@ -66,31 +59,69 @@ const About: React.FC = () => {
                 </CardContent>
             </Card>
 
-            {/* Brands We Work With Section */}
-            <Card>
-                <CardContent sx={{ backgroundColor: "#2c3033" }}>
-                    <Typography variant="h3" sx={{ textAlign: "center", marginBottom: "20px", color: "white", paddingTop: "5%", paddingBottom: "4%" }}>
-                        Our Partners
-                    </Typography>
-                    <Grid container spacing={4} justifyContent="center">
-                        {clients.map((brand, idx) => (
-                            <Grid item key={idx} xs={6} sm={4} md={3} lg={2}>
-                                <CardMedia
-                                    component="img"
-                                    image={brand.logo}
-                                    alt={brand.name}
-                                    sx={{
-                                        display: "block",
-                                        filter: "grayscale(100%)",
-                                        transition: "0.3s",
-                                        "&:hover": { filter: "grayscale(0%)" },
-                                    }}
-                                />
+            <div
+      style={{
+        position: "relative",  // Position for both images to overlap
+        width: "100%",
+        height: "400px",       // Adjust the height as needed
+      }}
+    >
+      {/* Image 1 (on the left side) */}
+      <Card
+        sx={{
+          position: "absolute",
+          left: "0",         // Position it on the left side
+          top: "0",
+          width: "40%",      // You can adjust this width as needed
+          height: "100%",
+        }}
+    
+      >
+        <CardMedia component="img" image={Purple} alt="Image 1" sx={{ height: "100%" }} />
+      </Card>
+
+      {/* Image 2 (on the right side) */}
+      <Card
+        sx={{
+          position: "absolute",
+          right: "0",        // Position it on the right side
+          top: "0",
+          width: "60%",       // You can adjust this width as needed
+          height: "100%",
+        }}
+      >
+        <CardMedia component="img" image={Purple2} alt="Image 2" sx={{ height: "100%" }} />
+      </Card>
+    </div>
+           {/* Brands We Work With Section */}
+           <Card sx={{ padding: "5%", backgroundColor: "#f5f5f5" }}>
+                <CardContent>
+                    <Grid container spacing={4}>
+                        {/* Left Side - "Brands We Work With" Title */}
+                        <Grid item xs={12} md={3}>
+                            <Typography variant="h2" sx={{ textAlign: "left" }}>
+                                Brands We Work With
+                            </Typography>
+                        </Grid>
+
+                        {/* Right Side - Two Column Layout for Clients */}
+                        <Grid item xs={12} md={9}>
+                            <Grid container spacing={4}>
+                                {clients.map((client, index) => (
+                                    <Grid item xs={6} key={index}>
+                                        <Typography variant="h4">{client.name}</Typography>
+                                        {/* Location under the Brand Name */}
+                                        <Typography variant="body1" sx={{ display: "block", fontStyle: "italic", marginTop: "4px", color: "gray" }}>
+                                            {client.location}
+                                        </Typography>
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))}
+                        </Grid>
                     </Grid>
                 </CardContent>
             </Card>
+
 
             <Card sx={{ padding: "5%" }}>
     <CardContent>
