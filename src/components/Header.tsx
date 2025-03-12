@@ -14,14 +14,15 @@ const Header = () => {
   const navItems = [
     { label: "Products", path: "/products" },
     { label: "About", path: "/about-us" },
-    { label: "Contact", path: "/contact" },
+    { label: "Photometric Design", path: "/photometric-design" },
     { label: "Portfolio", path: "/portfolio" },
+    { label: "Contact", path: "/contact" },
   ];
 
   return (
     <AppBar position="static" color="default" sx={{ backgroundColor: "white" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "15px", paddingBottom: "15px" }}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 7 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 10}}>
           {/* Logo */}
           <Card sx={{ maxWidth: 300, boxShadow: "none", cursor: "pointer" }} onClick={() => window.location.href = "/home"}>
             <CardMedia component="img" image="logoCropped.jpg" alt="Company Logo" />

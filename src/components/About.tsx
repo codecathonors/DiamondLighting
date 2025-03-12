@@ -1,17 +1,14 @@
 import { CardMedia, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { AboutUsText } from "../utility/longTexts";
 import Grid from "@mui/material/Grid";
-
-// Import images
 import Light1 from "../assets/Light1.jpg";
 import Light2 from "../assets/Light2.jpg";
 import Light3 from "../assets/Light3.jpg";
+import Light4 from "../assets/Light4.jpg";
 import { clients } from '../utility/clients';
-import FixtureAboveBar from "../assets/FixtureAboveBar.png"
 import Purple from "../assets/Purple.png"
 import Purple2 from "../assets/Purple2.png"
 
@@ -32,13 +29,22 @@ const About: React.FC = () => {
     return (
         <div>
             {/* Header Section */}
-            <Card sx={{ padding: "10%", backgroundColor: "#2c3033", color: "white" }}>
-                <CardContent>
-                    <Typography variant="h1">
-                        We are Diamond Lighting
-                    </Typography>
-                </CardContent>
-            </Card>
+            <Card sx={{ 
+    padding: "10%", 
+    backgroundColor: "#2c3033", 
+    color: "white", 
+    backgroundImage: `url(${Light4})`, // Add the imported image
+    backgroundSize: "auto", 
+    backgroundPosition: "left",
+    backgroundRepeat: "no-repeat"
+}}>
+    <CardContent>
+        <Typography variant="h1">
+            We are Diamond Lighting
+        </Typography>
+    </CardContent>
+</Card>
+
 
             {/* Side-by-Side Layout for Image and About Text */}
             <Card sx={{ padding: "5%" }}>
@@ -95,36 +101,60 @@ const About: React.FC = () => {
     </div>
            {/* Brands We Work With Section */}
            <Card sx={{ padding: "5%", backgroundColor: "#f5f5f5" }}>
-                <CardContent>
-                    <Grid container spacing={4}>
-                        {/* Left Side - "Brands We Work With" Title */}
-                        <Grid item xs={12} md={3}>
-                            <Typography variant="h2" sx={{ textAlign: "left" }}>
-                                Brands We Work With
-                            </Typography>
-                        </Grid>
+  <CardContent>
+    <Grid container spacing={4}>
+      {/* Left Side - "Brands We Work With" Title */}
+      <Grid item xs={12} md={3}>
+        <Typography variant="h2" sx={{ textAlign: "left" }}>
+          Brands We Work With
+        </Typography>
+      </Grid>
 
-                        {/* Right Side - Two Column Layout for Clients */}
-                        <Grid item xs={12} md={9}>
-                            <Grid container spacing={4}>
-                                {clients.map((client, index) => (
-                                    <Grid item xs={6} key={index}>
-                                        <Typography variant="h4">{client.name}</Typography>
-                                        {/* Location under the Brand Name */}
-                                        <Typography variant="body1" sx={{ display: "block", fontStyle: "italic", marginTop: "4px", color: "gray" }}>
-                                            {client.location}
-                                        </Typography>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </CardContent>
-            </Card>
+      {/* Right Side - Two Column Layout for Clients */}
+      <Grid item xs={12} md={9}>
+        <Grid container spacing={4} >
+          {clients.map((client, index) => (
+            <Grid item xs={6} key={index} sx={{"&:hover": {
+                color: "#585858",
+              }}}>
+              {/* Client Name with Click Handler */}
+              <Typography
+                variant="h4"
+                sx={{ cursor: "pointer" }}
+                onClick={() => window.open(client.website, "_blank")}
+              >
+                {client.name}
+              </Typography>
+              {/* Location with Click Handler */}
+              <Typography
+                variant="body1"
+                sx={{
+                  display: "block",
+                  fontStyle: "italic",
+                  marginTop: "4px",
+                  color: "gray",
+                  cursor: "pointer",
+
+                }}
+                onClick={() => window.open(client.website, "_blank")}
+              >
+                {client.location}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
+  </CardContent>
+</Card>
 
 
-            <Card sx={{ padding: "5%" }}>
-    <CardContent>
+
+            <Card sx={{ padding: "5%"
+         }}>
+    <CardContent sx={{  "&:hover": {
+            color: "#585858",
+          },}}>
         <Grid container justifyContent="space-between">
             {/* Left Side - Title */}
             <Grid item xs={12} sm={6}>
@@ -134,8 +164,8 @@ const About: React.FC = () => {
             </Grid>
 
             {/* Right Side - Contact Info */}
-            <Grid item xs={12} sm={6} textAlign="left">
-                <Typography variant="h4">
+            <Grid item xs={12} sm={6} textAlign="left" >
+                <Typography variant="h4"  >
                     info@diamond-lighting.com
                 </Typography>
                 <Typography variant="h4">
